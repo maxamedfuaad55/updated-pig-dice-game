@@ -1,0 +1,1241 @@
+/* =========================================================
+   PIG DICE — ARCADE EDITION
+   Design tokens
+========================================================= */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #0b1020;
+  --panel: rgba(20, 29, 51, .76);
+  --panel-strong: #17223b;
+  --line: rgba(163, 184, 226, .13);
+
+  --text: #f4f7ff;
+  --muted: #8997b4;
+
+  --cyan: #52d6f5;
+  --blue: #6487ff;
+  --green: #48e0a4;
+  --red: #ff647c;
+  --gold: #ffd477;
+
+  --radius: 24px;
+  --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+}
+
+
+/* =========================================================
+   1. GLOBAL RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 28px 18px 42px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% -20%,
+      #263c68 0%,
+      var(--bg) 55%
+    );
+
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+
+/* =========================================================
+   2. BACKGROUND EFFECTS
+========================================================= */
+
+.ambient {
+  position: fixed;
+  z-index: -1;
+
+  width: 380px;
+  height: 380px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+  opacity: .16;
+
+  pointer-events: none;
+}
+
+.ambient-one {
+  background: #267eff;
+  top: 15%;
+  left: -220px;
+}
+
+.ambient-two {
+  background: #15d8c0;
+  bottom: -180px;
+  right: -150px;
+}
+
+
+/* =========================================================
+   3. MAIN CONTAINER
+========================================================= */
+
+.app-shell {
+  width: min(100%, 940px);
+  margin: auto;
+}
+
+
+/* =========================================================
+   4. HEADER
+========================================================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 48px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--text);
+  text-decoration: none;
+
+  font: 700 19px "Space Grotesk", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.07);
+
+  font-size: 21px;
+}
+
+.brand-accent {
+  color: var(--cyan);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mode-pill,
+.history-count {
+  color: var(--cyan);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.mode-pill {
+  border: 1px solid rgba(82,214,245,.25);
+  background: rgba(82,214,245,.08);
+
+  border-radius: 30px;
+  padding: 9px 13px;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 13px;
+  border: 1px solid var(--line);
+
+  background: rgba(255,255,255,.06);
+
+  cursor: pointer;
+  transition: .2s;
+}
+
+.icon-button:hover {
+  background: rgba(255,255,255,.13);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   5. HERO SECTION
+========================================================= */
+
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: var(--cyan);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.3px;
+}
+
+.hero h1 {
+  margin: 13px 0 12px;
+
+  font: 700 clamp(34px, 6vw, 56px)/1.02
+    "Space Grotesk", sans-serif;
+
+  letter-spacing: -2.2px;
+}
+
+.hero h1 span {
+  color: var(--cyan);
+}
+
+.hero-copy {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   6. GLASSMORPHISM
+========================================================= */
+
+.glass-panel {
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   7. MATCH SETTINGS
+========================================================= */
+
+.settings {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+
+  padding: 16px 18px;
+
+  border-radius: 18px;
+  margin-bottom: 22px;
+}
+
+.setting-group {
+  display: grid;
+  gap: 7px;
+}
+
+.setting-group label {
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.setting-group select {
+  min-width: 145px;
+
+  padding: 10px 30px 10px 12px;
+
+  color: var(--text);
+  background: #111b31;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  outline: none;
+}
+
+.setting-group select:focus,
+.player-name:focus {
+  border-color: var(--cyan);
+}
+
+.text-button {
+  margin-left: auto;
+
+  padding: 11px 15px;
+
+  border: 1px solid rgba(82,214,245,.25);
+  border-radius: 11px;
+
+  background: rgba(82,214,245,.1);
+  color: var(--cyan);
+
+  font-weight: 800;
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.text-button:hover {
+  background: rgba(82,214,245,.18);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   8. PLAYER SCOREBOARD
+========================================================= */
+
+.scoreboard {
+  display: grid;
+
+  grid-template-columns: 1fr 42px 1fr;
+
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+.player-card {
+  position: relative;
+  min-width: 0;
+
+  padding: 23px;
+
+  border-radius: var(--radius);
+
+  opacity: .66;
+  transform: scale(.985);
+
+  transition:
+    opacity .35s,
+    transform .35s,
+    border-color .35s,
+    box-shadow .35s,
+    filter .35s;
+}
+
+.player-card.active {
+  opacity: 1;
+  transform: scale(1);
+
+  border-color: rgba(82,214,245,.5);
+
+  box-shadow:
+    0 0 0 1px rgba(82,214,245,.08),
+    0 16px 50px rgba(31,157,220,.14);
+}
+
+.player-card.inactive {
+  filter: saturate(.7);
+}
+
+
+/* PLAYER HEADER */
+
+.player-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.player-number {
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.turn-badge {
+  display: none;
+
+  padding: 6px 8px;
+
+  border-radius: 30px;
+
+  background: rgba(82,214,245,.12);
+  color: var(--cyan);
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+
+.player-card.active .turn-badge {
+  display: inline-block;
+}
+
+
+/* PLAYER NAME */
+
+.player-name {
+  display: block;
+  width: 100%;
+
+  margin: 20px 0 7px;
+  padding: 0;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  outline: none;
+
+  background: transparent;
+  color: var(--text);
+
+  font: 700 21px "Space Grotesk", sans-serif;
+}
+
+.player-name:focus {
+  padding: 5px 7px;
+}
+
+
+/* TOTAL SCORE */
+
+.score-label {
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.total-score {
+  margin: 3px 0 16px;
+
+  color: var(--cyan);
+
+  font: 700 clamp(48px, 7vw, 66px)/1.1
+    "Space Grotesk", sans-serif;
+
+  letter-spacing: -3px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* CURRENT SCORE */
+
+.current-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+
+  border-radius: 13px;
+
+  background: rgba(5,11,25,.48);
+}
+
+.current-panel span {
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.current-panel strong {
+  color: var(--green);
+
+  font: 700 24px "Space Grotesk", sans-serif;
+}
+
+
+/* PROGRESS BAR */
+
+.progress-track {
+  height: 4px;
+  margin-top: 16px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+  background: rgba(255,255,255,.07);
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    var(--blue),
+    var(--cyan)
+  );
+
+  transition: width .5s ease;
+}
+
+
+/* VS */
+
+.vs-mark {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid var(--line);
+  border-radius: 50%;
+
+  background: #111a2e;
+  color: var(--muted);
+
+  font: 700 10px "Space Grotesk", sans-serif;
+}
+
+
+/* =========================================================
+   9. GAME AREA
+========================================================= */
+
+.play-area {
+  padding: 26px 22px 22px;
+
+  border-radius: var(--radius);
+
+  text-align: center;
+}
+
+.turn-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+
+.turn-heading h2 {
+  font: 700 14px "Space Grotesk", sans-serif;
+  letter-spacing: 1.4px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .4;
+    transform: scale(.8);
+  }
+}
+
+
+/* =========================================================
+   10. DICE
+========================================================= */
+
+.dice-stage {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 150px;
+  height: 145px;
+
+  margin: 12px auto 4px;
+
+  perspective: 700px;
+}
+
+.dice-shadow {
+  position: absolute;
+  bottom: 4px;
+
+  width: 78px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  background: #000;
+  filter: blur(12px);
+  opacity: .5;
+}
+
+.dice {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 105px;
+  height: 105px;
+
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 25px;
+
+  background: linear-gradient(
+    145deg,
+    #fff,
+    #dce8f8
+  );
+
+  color: #111b31;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35),
+    inset 0 2px 5px #fff;
+
+  font-size: 70px;
+
+  transform-style: preserve-3d;
+}
+
+.dice.rolling {
+  animation: diceRoll .82s cubic-bezier(.2,.8,.25,1);
+}
+
+@keyframes diceRoll {
+
+  0% {
+    transform: translateY(0) rotate(0) scale(1);
+    filter: blur(0);
+  }
+
+  18% {
+    transform:
+      translateY(-18px)
+      rotateX(100deg)
+      rotateY(80deg)
+      scale(1.08);
+
+    filter: blur(2px);
+  }
+
+  48% {
+    transform:
+      translateY(-8px)
+      rotateX(260deg)
+      rotateY(210deg)
+      rotateZ(90deg)
+      scale(1.12);
+
+    filter: blur(3px);
+  }
+
+  78% {
+    transform:
+      translateY(5px)
+      rotateX(340deg)
+      rotateY(330deg)
+      rotateZ(160deg)
+      scale(.96);
+
+    filter: blur(1px);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotateX(360deg)
+      rotateY(360deg)
+      rotateZ(180deg)
+      scale(1);
+
+    filter: blur(0);
+  }
+
+}
+
+
+/* GAME MESSAGE */
+
+.game-message {
+  min-height: 22px;
+
+  margin: 6px 0 20px;
+
+  color: #c0cbe0;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   11. GAME BUTTONS
+========================================================= */
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.action-button {
+  min-height: 48px;
+
+  padding: 0 22px;
+
+  border: 0;
+  border-radius: 13px;
+
+  color: #07111e;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .9px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.2),
+    0 10px 25px rgba(0,0,0,.16);
+
+  transition:
+    transform .15s,
+    filter .15s,
+    box-shadow .15s;
+}
+
+.action-button span {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+.action-button:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.action-button:active:not(:disabled) {
+  transform: translateY(3px) scale(.98);
+
+  box-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+.action-button:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+  filter: grayscale(.5);
+}
+
+.roll-button {
+  background: linear-gradient(
+    135deg,
+    #6ce5fa,
+    #55b9ff
+  );
+}
+
+.hold-button {
+  background: linear-gradient(
+    135deg,
+    #6af0b6,
+    #39c995
+  );
+}
+
+.rule-hint {
+  margin-top: 17px;
+
+  color: #6f7e9d;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .8px;
+}
+
+
+/* =========================================================
+   12. MOVE HISTORY
+========================================================= */
+
+.history-panel {
+  margin-top: 22px;
+  padding: 20px 22px;
+
+  border-radius: 19px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.section-heading h2 {
+  margin-top: 4px;
+
+  font: 700 18px "Space Grotesk", sans-serif;
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+
+  list-style: none;
+}
+
+.history-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 34px;
+  padding: 8px 11px;
+
+  border-radius: 9px;
+
+  background: rgba(255,255,255,.035);
+  color: #b7c3da;
+
+  font-size: 11px;
+
+  animation: tickerIn .25s ease both;
+}
+
+.history-list li::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  flex: 0 0 6px;
+
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.history-list .empty-history {
+  color: var(--muted);
+}
+
+.history-list .empty-history::before {
+  background: var(--muted);
+}
+
+@keyframes tickerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   13. FOOTER
+========================================================= */
+
+.footer {
+  margin-top: 26px;
+
+  text-align: center;
+
+  color: #596987;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.footer span {
+  padding: 0 7px;
+  color: var(--cyan);
+}
+
+
+/* =========================================================
+   14. FLOATING SCORE
+========================================================= */
+
+.floating-score {
+  position: absolute;
+  z-index: 5;
+
+  color: var(--green);
+
+  font: 700 23px "Space Grotesk", sans-serif;
+
+  pointer-events: none;
+
+  animation: floatUp .95s ease forwards;
+
+  text-shadow:
+    0 4px 18px rgba(72,224,164,.35);
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-65px) scale(1.12);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   15. PIG OUT EFFECT
+========================================================= */
+
+.player-card.pig-out {
+  animation: pigOut .55s ease;
+}
+
+@keyframes pigOut {
+
+  0%, 100% {
+    border-color: rgba(163,184,226,.13);
+  }
+
+  25%, 65% {
+    border-color: var(--red);
+
+    box-shadow:
+      0 0 30px rgba(255,100,124,.28);
+
+    background: rgba(95,28,49,.5);
+  }
+
+}
+
+body.screen-shake {
+  animation: screenShake .35s ease;
+}
+
+@keyframes screenShake {
+
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+
+  40%, 80% {
+    transform: translateX(5px);
+  }
+
+}
+
+
+/* =========================================================
+   16. WINNER MODAL
+========================================================= */
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  padding: 18px;
+
+  background: rgba(3,7,17,.78);
+
+  backdrop-filter: blur(12px);
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.winner-modal {
+  width: min(100%, 430px);
+
+  padding: 34px 26px;
+
+  border-color: rgba(255,212,119,.3);
+  border-radius: 26px;
+
+  text-align: center;
+
+  animation: modalIn .4s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.winner-trophy {
+  margin-bottom: 13px;
+  font-size: 52px;
+
+  filter: drop-shadow(
+    0 8px 18px rgba(255,212,119,.25)
+  );
+}
+
+.winner-modal h2 {
+  margin: 8px 0;
+
+  color: var(--gold);
+
+  font: 700 32px "Space Grotesk", sans-serif;
+}
+
+.winner-subtitle {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+
+/* WINNER STATISTICS */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+
+  margin: 25px 0;
+}
+
+.stats-grid div {
+  display: grid;
+  gap: 6px;
+
+  padding: 14px 5px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.05);
+}
+
+.stats-grid strong {
+  color: var(--cyan);
+
+  font: 700 24px "Space Grotesk", sans-serif;
+}
+
+.stats-grid span {
+  color: var(--muted);
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.modal-button {
+  width: 100%;
+}
+
+
+/* =========================================================
+   17. CONFETTI CANVAS
+========================================================= */
+
+#confetti-canvas {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   18. ACCESSIBILITY
+========================================================= */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =========================================================
+   19. TABLET AND MOBILE RESPONSIVENESS
+========================================================= */
+
+@media (max-width: 650px) {
+
+  body {
+    padding: 18px 12px 30px;
+  }
+
+  .topbar {
+    margin-bottom: 35px;
+  }
+
+  .settings {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .setting-group {
+    flex: 1;
+    min-width: 125px;
+  }
+
+  .setting-group select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .text-button {
+    margin: 0;
+  }
+
+  .scoreboard {
+    grid-template-columns:
+      minmax(0,1fr)
+      25px
+      minmax(0,1fr);
+
+    gap: 6px;
+  }
+
+  .player-card {
+    padding: 16px 12px;
+    border-radius: 18px;
+  }
+
+  .player-name {
+    font-size: 17px;
+    margin-top: 16px;
+  }
+
+  .player-number {
+    font-size: 8px;
+    letter-spacing: .5px;
+  }
+
+  .turn-badge {
+    font-size: 7px;
+    padding: 5px 6px;
+  }
+
+  .current-panel {
+    padding: 10px 8px;
+  }
+
+  .current-panel span {
+    font-size: 7px;
+    letter-spacing: .4px;
+  }
+
+  .current-panel strong {
+    font-size: 20px;
+  }
+
+  .vs-mark {
+    width: 25px;
+    height: 25px;
+    font-size: 8px;
+  }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media (max-width: 390px) {
+
+  .hero-copy {
+    max-width: 290px;
+    margin: auto;
+    line-height: 1.5;
+  }
+
+  .button-row {
+    gap: 8px;
+  }
+
+  .action-button {
+    padding: 0 13px;
+    font-size: 10px;
+  }
+
+  .player-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .turn-badge {
+    align-self: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   20. REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern two-player Pig Dice arcade game.">
+  <meta name="theme-color" content="#0b1020">
+
+  <title>Pig Dice — Arcade Edition</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+ 
+</head>
+
+<body>
+
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main class="app-shell">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <a class="brand" href="#" aria-label="Pig Dice home">
+        <span class="brand-icon">🎲</span>
+        <span>PIG<span class="brand-accent">DICE</span></span>
+      </a>
+
+      <div class="top-actions">
+        <span class="mode-pill" id="mode-pill">2 PLAYERS</span>
+
+        <button
+          class="icon-button"
+          id="sound-btn"
+          type="button"
+          aria-label="Mute sound"
+          title="Toggle sound">
+          🔊
+        </button>
+      </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <p class="eyebrow">THE CLASSIC DICE CHALLENGE</p>
+
+      <h1>
+        ROLL THE DICE.<br>
+        <span>RULE THE TABLE.</span>
+      </h1>
+
+      <p class="hero-copy">
+        Push your luck, bank your points,
+        and be the first to hit the target.
+      </p>
+
+    </section>
+
+
+    <!-- MATCH SETTINGS -->
+    <section class="settings glass-panel" aria-label="Match settings">
+
+      <div class="setting-group mode-setting">
+        <label for="mode-select">GAME MODE</label>
+
+        <select id="mode-select">
+          <option value="human">Player vs Player</option>
+          <option value="cpu">Player vs CPU</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label for="target-select">WINNING SCORE</label>
+
+        <select id="target-select">
+          <option value="50">50 points</option>
+          <option value="100" selected>100 points</option>
+          <option value="150">150 points</option>
+        </select>
+      </div>
+
+      <button
+        class="text-button"
+        id="new-game-btn"
+        type="button">
+        ↻ New game
+      </button>
+
+    </section>
+
+
+    <!-- SCOREBOARD -->
+    <section class="scoreboard" aria-label="Player scores">
+
+      <!-- PLAYER 1 -->
+      <article class="player-card glass-panel active" id="player-0">
+
+        <div class="player-topline">
+          <span class="player-number">01 / PLAYER</span>
+          <span class="turn-badge">YOUR TURN</span>
+        </div>
+
+        <label class="sr-only" for="name-0">
+          Player 1 name
+        </label>
+
+        <input
+          class="player-name"
+          id="name-0"
+          maxlength="16"
+          value="Player 1"
+          aria-label="Player 1 name">
+
+        <div class="score-label">TOTAL SCORE</div>
+
+        <div class="total-score" id="score-0" aria-live="polite">
+          0
+        </div>
+
+        <div class="current-panel">
+          <span>TURN POINTS</span>
+          <strong id="current-0">0</strong>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-0"></div>
+        </div>
+
+      </article>
+
+
+      <div class="vs-mark" aria-hidden="true">VS</div>
+
+
+      <!-- PLAYER 2 -->
+      <article class="player-card glass-panel" id="player-1">
+
+        <div class="player-topline">
+          <span class="player-number">
+            02 / <span id="player-2-kind">PLAYER</span>
+          </span>
+
+          <span class="turn-badge">YOUR TURN</span>
+        </div>
+
+        <label class="sr-only" for="name-1">
+          Player 2 name
+        </label>
+
+        <input
+          class="player-name"
+          id="name-1"
+          maxlength="16"
+          value="Player 2"
+          aria-label="Player 2 name">
+
+        <div class="score-label">TOTAL SCORE</div>
+
+        <div class="total-score" id="score-1" aria-live="polite">
+          0
+        </div>
+
+        <div class="current-panel">
+          <span>TURN POINTS</span>
+          <strong id="current-1">0</strong>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-1"></div>
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- GAME AREA -->
+    <section class="play-area glass-panel" aria-label="Game controls">
+
+      <div class="turn-heading">
+        <span class="live-dot"></span>
+        <h2 id="turn-message">PLAYER 1'S TURN</h2>
+      </div>
+
+      <div class="dice-stage">
+
+        <div class="dice-shadow"></div>
+
+        <div
+          class="dice"
+          id="dice"
+          role="img"
+          aria-label="Dice not rolled yet">
+          🎲
+        </div>
+
+      </div>
+
+      <p class="game-message" id="message" aria-live="polite">
+        Roll the dice to start your turn.
+      </p>
+
+      <div class="button-row">
+
+        <button
+          class="action-button roll-button"
+          id="roll-btn"
+          type="button">
+          <span>🎲</span> ROLL DICE
+        </button>
+
+        <button
+          class="action-button hold-button"
+          id="hold-btn"
+          type="button">
+          <span>⬇</span> HOLD POINTS
+        </button>
+
+      </div>
+
+      <p class="rule-hint">
+        ROLL 1 = lose turn points · HOLD = save your points
+      </p>
+
+    </section>
+
+
+    <!-- LIVE HISTORY -->
+    <section class="history-panel glass-panel">
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">MATCH ACTIVITY</p>
+          <h2>Move ticker</h2>
+        </div>
+
+        <span class="history-count" id="history-count">
+          0 MOVES
+        </span>
+
+      </div>
+
+      <ol class="history-list" id="history-list">
+
+        <li class="empty-history">
+          Your game activity will appear here.
+        </li>
+
+      </ol>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      BUILT FOR THE BOLD
+      <span>·</span>
+      FIRST TO THE TARGET WINS
+    </footer>
+
+  </main>
+
+
+  <!-- WINNER MODAL -->
+  <div class="modal-backdrop" id="winner-modal" hidden>
+
+    <section
+      class="winner-modal glass-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="winner-title">
+
+      <div class="winner-trophy">🏆</div>
+
+      <p class="eyebrow">MATCH COMPLETE</p>
+
+      <h2 id="winner-title">YOU DID IT!</h2>
+
+      <p class="winner-subtitle" id="winner-subtitle">
+        The table has a new champion.
+      </p>
+
+      <div class="stats-grid">
+
+        <div>
+          <strong id="stat-rolls">0</strong>
+          <span>TOTAL ROLLS</span>
+        </div>
+
+        <div>
+          <strong id="stat-biggest">0</strong>
+          <span>BIGGEST TURN</span>
+        </div>
+
+        <div>
+          <strong id="stat-score">0</strong>
+          <span>FINAL SCORE</span>
+        </div>
+
+      </div>
+
+      <button
+        class="action-button roll-button modal-button"
+        id="play-again-btn"
+        type="button">
+        ↻ PLAY AGAIN
+      </button>
+
+    </section>
+
+  </div>
+
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+   <script src="script.js" defer></script>
+
+</body>
+</html>
